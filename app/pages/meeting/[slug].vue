@@ -109,35 +109,7 @@ const getMaterialUrl = (material: Material) => {
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <NuxtLink to="/" class="text-2xl font-bold">
-              <span class="text-gray-700">AAII</span>
-              <span class="text-green-500">LA</span>
-            </NuxtLink>
-          </div>
-          <nav class="hidden md:flex space-x-6">
-            <NuxtLink to="/" class="text-green-500 font-medium hover:text-green-600">Home</NuxtLink>
-            <NuxtLink to="/" class="text-blue-600 font-medium hover:text-blue-700 border-b-2 border-blue-600">All Meetings</NuxtLink>
-            <a href="#" class="text-gray-600 hover:text-gray-800">Chapter Leadership</a>
-            <a href="#" class="text-gray-600 hover:text-gray-800">About Us</a>
-            <a href="#" class="text-gray-600 hover:text-gray-800">Contact Us</a>
-            <a href="#" class="text-blue-600 font-medium hover:text-blue-700">CONTRIBUTIONS</a>
-          </nav>
-          <div class="flex items-center space-x-3">
-            <a href="https://www.facebook.com/AAIILA" target="_blank" class="text-blue-600 hover:text-blue-700">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://www.meetup.com/aaii-los-angeles/" target="_blank" class="text-red-600 hover:text-red-700">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.98 9.98c0-.53.43-.96.96-.96s.96.43.96.96-.43.96-.96.96-.96-.43-.96-.96zm11.5 6.5c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
+    <AppHeader />
 
     <!-- Loading State -->
     <div v-if="loading" class="container mx-auto px-4 py-12 text-center">
@@ -147,8 +119,8 @@ const getMaterialUrl = (material: Material) => {
     <!-- Error State -->
     <div v-else-if="error" class="container mx-auto px-4 py-12 text-center">
       <p class="text-xl text-red-600 mb-4">{{ error }}</p>
-      <NuxtLink 
-        to="/"
+      <NuxtLink
+        to="/all-meetings"
         class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded transition-colors"
       >
         ← Back to All Meetings
@@ -226,8 +198,8 @@ const getMaterialUrl = (material: Material) => {
 
       <!-- Back Button -->
       <div class="text-center mt-12">
-        <NuxtLink 
-          to="/"
+        <NuxtLink
+          to="/all-meetings"
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded transition-colors"
         >
           ← BACK TO ALL MEETINGS
@@ -235,22 +207,6 @@ const getMaterialUrl = (material: Material) => {
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
-      <div class="container mx-auto px-4 text-center">
-        <p class="text-sm mb-2">
-          <strong>DISCLAIMER:</strong> Investing involves the risk of loss, including principle. Information on this website is provided for your education and consideration;
-        </p>
-        <p class="text-sm mb-2">
-          AAII and the Los Angeles Chapter do not make any recommendations to buy or sell any product, service or investment style
-        </p>
-        <p class="text-sm mb-4">
-          and cannot be held accountable or responsible for the decisions you make.
-        </p>
-        <p class="text-xs text-gray-400">
-          © 2019, 2020 AAII Los Angeles | Brought to you by <a href="https://webidpro.com" class="text-green-500 hover:text-green-400">Webidpro.com</a>
-        </p>
-      </div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
