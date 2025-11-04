@@ -21,9 +21,9 @@
           <NuxtLink to="/chapter-leadership" class="text-gray-600 hover:text-green-600 font-medium transition-colors">
             Chapter Leadership
           </NuxtLink>
-          <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">
+          <NuxtLink to="/about-us" class="text-gray-600 hover:text-green-600 font-medium transition-colors">
             About Us
-          </a>
+          </NuxtLink>
           <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">
             Contact Us
           </a>

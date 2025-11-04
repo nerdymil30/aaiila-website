@@ -52,16 +52,17 @@ onMounted(() => {
       <!-- Back Face -->
       <div class="flip-card-face flip-card-back">
         <div class="flip-card-content">
-          <p class="flip-card-description">{{ description }}</p>
-          <NuxtLink
-            v-if="link !== '#'"
-            :to="link"
-            class="flip-card-link"
-          >
-            Learn More →
-          </NuxtLink>
+          <div class="flip-card-description">{{ description }}</div>
         </div>
       </div>
+
+      <!-- Full Box Link -->
+      <NuxtLink
+        v-if="link !== '#'"
+        :to="link"
+        class="full-box-link"
+        title=""
+      ></NuxtLink>
     </div>
   </div>
 </template>
@@ -69,6 +70,7 @@ onMounted(() => {
 <style scoped>
 .flip-card-container {
   perspective: 1000px;
+  min-height: 400px;
   height: 400px;
   opacity: 0;
   transform: translateY(50px);
@@ -91,9 +93,8 @@ onMounted(() => {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
+  transition: transform 0.6s ease;
   transform-style: preserve-3d;
-  cursor: pointer;
 }
 
 .flip-card.is-flipped {
@@ -106,15 +107,16 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 400px;
   backface-visibility: hidden;
-  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .flip-card-front {
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,34 +129,42 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .flip-card-content {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   color: white;
+  width: 100%;
 }
 
 .flip-card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  line-height: 1.4;
-  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  margin-bottom: 0.5rem;
+  color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .flip-card-subtitle {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
   opacity: 0.95;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .flip-card-back {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  background-color: #666666;
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
@@ -162,42 +172,47 @@ onMounted(() => {
 }
 
 .flip-card-description {
-  font-size: 0.95rem;
+  font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.flip-card-link {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
   color: white;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
+  padding: 0 1rem;
 }
 
-.flip-card-link:hover {
-  background-color: #2563eb;
+/* Full box link covering entire card */
+.full-box-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  text-decoration: none;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .flip-card-container {
+    min-height: 350px;
     height: 350px;
   }
 
+  .flip-card-face {
+    min-height: 350px;
+  }
+
   .flip-card-title {
-    font-size: 1.25rem;
+    font-size: 24px;
+    line-height: 30px;
   }
 
   .flip-card-subtitle {
-    font-size: 0.9rem;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 1px;
   }
 
   .flip-card-description {
-    font-size: 0.875rem;
+    font-size: 14px;
   }
 }
 </style>

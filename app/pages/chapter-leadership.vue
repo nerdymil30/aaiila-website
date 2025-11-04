@@ -123,16 +123,16 @@ const getPhotoUrl = (photo: string) => {
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <!-- Photo Column (3/12 on large screens) -->
             <div class="lg:col-span-3">
-              <div class="relative group overflow-hidden rounded-lg shadow-md">
+              <div class="relative group overflow-hidden">
                 <img
                   :src="getPhotoUrl(member.photo)"
                   :alt="member.name"
-                  class="w-full h-auto object-cover object-top rounded-lg"
+                  class="w-full h-auto object-cover object-top"
                   style="max-height: 450px; object-position: center 20%;"
                   @error="(e) => (e.target as HTMLImageElement).src = '/assets/images/testimonial_man-375x450.png'"
                 >
                 <!-- Hover Overlay with Short Bio -->
-                <div v-if="member.short_bio" class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/85 to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end p-6">
+                <div v-if="member.short_bio" class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/85 to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div>
                     <h3 class="text-white font-bold text-lg mb-2">{{ member.name }}</h3>
                     <p class="text-green-400 font-semibold text-sm mb-3">{{ member.title }}</p>
@@ -162,7 +162,7 @@ const getPhotoUrl = (photo: string) => {
               <div>
                 <a
                   :href="`mailto:${member.email}`"
-                  class="inline-block bg-white hover:bg-blue-600 text-blue-600 hover:text-white font-bold px-6 py-3 border-2 border-green-400 hover:border-blue-600 transition-colors duration-300 rounded-sm shadow-sm hover:shadow-md"
+                  class="inline-block bg-white hover:bg-blue-600 text-blue-600 hover:text-white font-bold px-6 py-3 border-2 border-green-400 hover:border-blue-600 transition-colors duration-300"
                 >
                   Email {{ member.name.split(' ')[0] }} {{ member.name.split(' ')[member.name.split(' ').length - 1] }}
                 </a>

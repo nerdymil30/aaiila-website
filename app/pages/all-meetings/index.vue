@@ -53,8 +53,8 @@ const getImageUrl = (meeting: Meeting) => {
           Future Meetings of the AAII Los Angeles Chapter
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div 
-            v-for="meeting in futureMeetings" 
+          <div
+            v-for="meeting in futureMeetings"
             :key="meeting.id"
             class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
           >
@@ -86,14 +86,14 @@ const getImageUrl = (meeting: Meeting) => {
         </h5>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div 
-            v-for="meeting in archivedMeetings" 
+          <div
+            v-for="meeting in archivedMeetings"
             :key="meeting.id"
             class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
           >
             <div class="h-48 overflow-hidden">
-              <img 
-                :src="getImageUrl(meeting)" 
+              <img
+                :src="getImageUrl(meeting)"
                 :alt="meeting.title"
                 class="w-full h-full object-cover"
                 @error="(e) => (e.target as HTMLImageElement).src = '/assets/images/slide_skirball-1.jpg'"
@@ -104,7 +104,7 @@ const getImageUrl = (meeting: Meeting) => {
               <p class="text-gray-600 text-sm mb-4">
                 Financial Education meeting information that focuses on the broad overview of basic individual investing in today's market.
               </p>
-              <a 
+              <a
                 :href="`/meeting/${meeting.slug}`"
                 class="inline-block bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2 rounded transition-colors"
               >
