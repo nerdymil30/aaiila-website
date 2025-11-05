@@ -24,9 +24,13 @@
           <NuxtLink to="/about-us" class="text-gray-600 hover:text-green-600 font-medium transition-colors">
             About Us
           </NuxtLink>
-          <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">
+          <button
+            type="button"
+            class="text-gray-600 hover:text-gray-800 font-medium transition-colors"
+            @click="openContactModal"
+          >
             Contact Us
-          </a>
+          </button>
           <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
             CONTRIBUTIONS
           </a>
@@ -59,9 +63,24 @@
         </div>
       </div>
     </div>
+
+    <!-- Contact Modal -->
+    <ContactModal
+      :is-open="isContactModalOpen"
+      @close="closeContactModal"
+    />
   </header>
 </template>
 
 <script setup lang="ts">
-// No script needed for now
+// Modal state
+const isContactModalOpen = ref(false)
+
+const openContactModal = () => {
+  isContactModalOpen.value = true
+}
+
+const closeContactModal = () => {
+  isContactModalOpen.value = false
+}
 </script>
