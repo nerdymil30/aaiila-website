@@ -24,9 +24,59 @@
           <NuxtLink to="/about-us" class="text-gray-600 hover:text-green-600 font-medium transition-colors">
             About Us
           </NuxtLink>
-          <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">
-            Contact Us
-          </a>
+
+          <!-- Contact Dropdown -->
+          <div id="contact-dropdown" class="relative">
+            <button
+              type="button"
+              class="text-gray-600 hover:text-gray-800 font-medium transition-colors flex items-center"
+              @click="toggleContactDropdown"
+            >
+              Contact Us
+              <svg
+                class="w-4 h-4 ml-1 transition-transform"
+                :class="{ 'rotate-180': isContactDropdownOpen }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <Transition
+              enter-active-class="transition ease-out duration-200"
+              enter-from-class="opacity-0 translate-y-1"
+              enter-to-class="opacity-100 translate-y-0"
+              leave-active-class="transition ease-in duration-150"
+              leave-from-class="opacity-100 translate-y-0"
+              leave-to-class="opacity-0 translate-y-1"
+            >
+              <div
+                v-if="isContactDropdownOpen"
+                class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-200"
+              >
+                <NuxtLink
+                  to="/contact/subscribe"
+                  class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 transition-colors"
+                  @click="closeContactDropdown"
+                >
+                  <div class="font-semibold">Subscribe to Updates</div>
+                  <div class="text-xs text-gray-500">Get program notifications</div>
+                </NuxtLink>
+                <NuxtLink
+                  to="/contact/message"
+                  class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  @click="closeContactDropdown"
+                >
+                  <div class="font-semibold">Send a Message</div>
+                  <div class="text-xs text-gray-500">Contact the admin</div>
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
+
           <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
             CONTRIBUTIONS
           </a>
@@ -63,5 +113,30 @@
 </template>
 
 <script setup lang="ts">
-// No script needed for now
+// Dropdown state
+const isContactDropdownOpen = ref(false)
+
+const toggleContactDropdown = () => {
+  isContactDropdownOpen.value = !isContactDropdownOpen.value
+}
+
+const closeContactDropdown = () => {
+  isContactDropdownOpen.value = false
+}
+
+// Close dropdown when clicking outside
+onMounted(() => {
+  const handleClickOutside = (e: MouseEvent) => {
+    const dropdown = document.getElementById('contact-dropdown')
+    if (dropdown && !dropdown.contains(e.target as Node)) {
+      closeContactDropdown()
+    }
+  }
+
+  document.addEventListener('click', handleClickOutside)
+
+  onUnmounted(() => {
+    document.removeEventListener('click', handleClickOutside)
+  })
+})
 </script>
