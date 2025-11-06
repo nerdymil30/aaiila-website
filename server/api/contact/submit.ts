@@ -1,5 +1,5 @@
-import { addContactToConstantContact, isValidEmail, isValidPhone, sanitizeInput, refreshAccessToken } from '~/server/utils/constant-contact'
-import type { ContactFormData, ConstantContactContact } from '~/types/contact'
+import { addContactToConstantContact, isValidEmail, isValidPhone, sanitizeInput, refreshAccessToken } from '../../utils/constant-contact'
+import type { ContactFormData, ConstantContactContact } from '../../../app/types/contact'
 
 export default eventHandler(async (event) => {
   try {

@@ -1,4 +1,4 @@
-import { refreshAccessToken } from '~/server/utils/constant-contact'
+import { refreshAccessToken } from '../../utils/constant-contact'
 
 export default eventHandler(async (event) => {
   try {

@@ -1,4 +1,4 @@
-import type { ConstantContactContact, ConstantContactTokenResponse } from '~/types/contact'
+import type { ConstantContactContact, ConstantContactTokenResponse } from '../../app/types/contact'
 
 const CONSTANT_CONTACT_API_BASE = 'https://api.cc.email/v3'
 const CONSTANT_CONTACT_AUTH_BASE = 'https://authz.constantcontact.com/oauth2/default/v1'
