@@ -22,7 +22,7 @@ onMounted(() => {
   })
 })
 
-// Prevent body scroll when modal is open
+// Prevent body scroll when popup is open
 watch(() => props.isOpen, (isOpen) => {
   if (isOpen) {
     document.body.style.overflow = 'hidden'
@@ -46,7 +46,7 @@ watch(() => props.isOpen, (isOpen) => {
       <div
         v-if="isOpen"
         class="fixed inset-0 z-50 overflow-y-auto"
-        aria-labelledby="modal-title"
+        aria-labelledby="newsletter-popup-title"
         role="dialog"
         aria-modal="true"
       >
@@ -56,7 +56,7 @@ watch(() => props.isOpen, (isOpen) => {
           @click="emit('close')"
         />
 
-        <!-- Modal Container -->
+        <!-- Popup Container -->
         <div class="flex min-h-screen items-center justify-center p-4">
           <Transition
             enter-active-class="transition-all duration-300 ease-out"
@@ -68,7 +68,7 @@ watch(() => props.isOpen, (isOpen) => {
           >
             <div
               v-if="isOpen"
-              class="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+              class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
               @click.stop
             >
               <!-- Close Button -->
@@ -93,22 +93,51 @@ watch(() => props.isOpen, (isOpen) => {
                 </svg>
               </button>
 
-              <!-- Modal Content -->
-              <div class="p-8 md:p-12">
-                <div class="text-center mb-8">
+              <!-- Popup Content -->
+              <div class="p-8">
+                <!-- Icon -->
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                    <svg
+                      class="w-8 h-8 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="text-center mb-6">
                   <h2
-                    id="modal-title"
-                    class="text-3xl md:text-4xl font-bold text-gray-800 mb-3"
+                    id="newsletter-popup-title"
+                    class="text-2xl md:text-3xl font-bold text-gray-800 mb-3"
                   >
-                    Get In Touch
+                    Stay Updated!
                   </h2>
-                  <p class="text-gray-600 text-lg">
-                    Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                  <p class="text-gray-600">
+                    Get notified about our upcoming investment education programs, meetings, and exclusive content.
                   </p>
                 </div>
 
-                <!-- Contact Form -->
-                <ContactForm />
+                <!-- Newsletter Form -->
+                <NewsletterSignupForm />
+
+                <div class="mt-6 text-center">
+                  <button
+                    type="button"
+                    class="text-sm text-gray-500 hover:text-gray-700 underline"
+                    @click="emit('close')"
+                  >
+                    Maybe later
+                  </button>
+                </div>
               </div>
             </div>
           </Transition>
@@ -119,7 +148,7 @@ watch(() => props.isOpen, (isOpen) => {
 </template>
 
 <style scoped>
-/* Smooth scrolling for modal content */
+/* Smooth scrolling for popup content */
 .overflow-y-auto {
   scrollbar-width: thin;
   scrollbar-color: #34d389 #f1f1f1;
